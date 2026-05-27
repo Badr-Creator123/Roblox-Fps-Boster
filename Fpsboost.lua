@@ -15,7 +15,7 @@ local GUI = Instance.new("ScreenGui")
 GUI.Name = "LightningHubGui"
 GUI.Parent = LocalPlayer:WaitForChild("PlayerGui")
 GUI.ResetOnSpawn = false
-GUI.IgnoreGuiInset = true
+GUI.IgnoreGuiInset = false
 GUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 -- ENTER BUTTON
