@@ -275,12 +275,12 @@ local function OptimizeWorld()
 	end
 end
 
--- KEEP NEW OBJECTS OPTIMIZED
-game.DescendantAdded:Connect(function(v)
+-- KEEP NEW OBJECTS OPTIMIZED (Only in workspace)
+workspace.DescendantAdded:Connect(function(v)
 
 	if PotatoEnabled
-		or VFXEnabled
-		or MaterialEnabled then
+	or VFXEnabled
+	or MaterialEnabled then
 
 		task.spawn(function()
 			pcall(function()
