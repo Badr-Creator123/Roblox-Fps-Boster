@@ -82,7 +82,7 @@ local function MakeDraggable(Frame)
 
 	Frame.InputBegan:Connect(function(Input)
 		if Input.UserInputType == Enum.UserInputType.MouseButton1
-		or Input.UserInputType == Enum.UserInputType.Touch then
+			or Input.UserInputType == Enum.UserInputType.Touch then
 
 			Dragging = true
 			DragStart = Input.Position
@@ -98,7 +98,7 @@ local function MakeDraggable(Frame)
 
 	Frame.InputChanged:Connect(function(Input)
 		if Input.UserInputType == Enum.UserInputType.MouseMovement
-		or Input.UserInputType == Enum.UserInputType.Touch then
+			or Input.UserInputType == Enum.UserInputType.Touch then
 			DragInput = Input
 		end
 	end)
@@ -184,11 +184,6 @@ local function SafeOptimizeObject(v)
 	if v:IsA("BasePart") then
 		v.Material = Enum.Material.SmoothPlastic
 		v.Reflectance = 0
-
-		-- IMPORTANT:
-		-- NO TRANSPARENCY
-		-- NO DESTROYING PARTS
-		-- NO LOWERING VIEW DISTANCE
 	end
 
 	-- SAFE TEXTURE REMOVAL
@@ -198,23 +193,18 @@ local function SafeOptimizeObject(v)
 
 	-- SAFE PARTICLE DISABLE
 	if v:IsA("ParticleEmitter")
-	or v:IsA("Trail")
-	or v:IsA("Smoke")
-	or v:IsA("Fire")
-	or v:IsA("Sparkles") then
+		or v:IsA("Trail")
+		or v:IsA("Smoke")
+		or v:IsA("Fire")
+		or v:IsA("Sparkles") then
 
 		v.Enabled = false
 	end
 
-	-- SAFE MESH OPTIMIZATION
-	if v:IsA("MeshPart") then
-		v.RenderFidelity = Enum.RenderFidelity.Performance
-	end
-
 	-- SAFE LIGHT DISABLE
 	if v:IsA("PointLight")
-	or v:IsA("SpotLight")
-	or v:IsA("SurfaceLight") then
+		or v:IsA("SpotLight")
+		or v:IsA("SurfaceLight") then
 
 		v.Enabled = false
 	end
@@ -230,21 +220,21 @@ local function OptimizeCharacter(Character)
 
 		-- REMOVE ACCESSORIES COMPLETELY
 		if v:IsA("Accessory")
-		or v:IsA("Hat") then
+			or v:IsA("Hat") then
 			v:Destroy()
 		end
 
 		-- REMOVE CLOTHES
 		if v:IsA("Shirt")
-		or v:IsA("Pants")
-		or v:IsA("ShirtGraphic")
-		or v:IsA("CharacterMesh") then
+			or v:IsA("Pants")
+			or v:IsA("ShirtGraphic")
+			or v:IsA("CharacterMesh") then
 			v:Destroy()
 		end
 
 		-- DISABLE CHARACTER PARTICLES
 		if v:IsA("ParticleEmitter")
-		or v:IsA("Trail") then
+			or v:IsA("Trail") then
 			v.Enabled = false
 		end
 	end
@@ -253,12 +243,12 @@ local function OptimizeCharacter(Character)
 	Character.DescendantAdded:Connect(function(v)
 
 		if v:IsA("Accessory")
-		or v:IsA("Hat") then
+			or v:IsA("Hat") then
 			v:Destroy()
 		end
 
 		if v:IsA("ParticleEmitter")
-		or v:IsA("Trail") then
+			or v:IsA("Trail") then
 			v.Enabled = false
 		end
 	end)
@@ -272,7 +262,6 @@ local function OptimizeWorld()
 
 	Lighting.GlobalShadows = false
 	Lighting.FogEnd = 100000
-	Lighting.Brightness = 1
 
 	if Terrain then
 		Terrain.WaterWaveSize = 0
@@ -290,8 +279,8 @@ end
 game.DescendantAdded:Connect(function(v)
 
 	if PotatoEnabled
-	or VFXEnabled
-	or MaterialEnabled then
+		or VFXEnabled
+		or MaterialEnabled then
 
 		task.spawn(function()
 			pcall(function()
@@ -315,7 +304,6 @@ OptimizeButton.MouseButton1Click:Connect(function()
 		OptimizeButton.BackgroundColor3 = Color3.fromRGB(0,180,0)
 
 		Lighting.GlobalShadows = false
-		Lighting.Brightness = 1
 		Lighting.EnvironmentDiffuseScale = 0
 		Lighting.EnvironmentSpecularScale = 0
 
@@ -384,17 +372,17 @@ VFXButton.MouseButton1Click:Connect(function()
 		for _,v in pairs(game:GetDescendants()) do
 
 			if v:IsA("ParticleEmitter")
-			or v:IsA("Trail")
-			or v:IsA("Smoke")
-			or v:IsA("Fire")
-			or v:IsA("Sparkles") then
+				or v:IsA("Trail")
+				or v:IsA("Smoke")
+				or v:IsA("Fire")
+				or v:IsA("Sparkles") then
 
 				v.Enabled = false
 			end
 
 			if v:IsA("PointLight")
-			or v:IsA("SpotLight")
-			or v:IsA("SurfaceLight") then
+				or v:IsA("SpotLight")
+				or v:IsA("SurfaceLight") then
 
 				v.Enabled = false
 			end
